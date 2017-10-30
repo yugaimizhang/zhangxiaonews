@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <style>
+        body{
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+    $(function () {
+        var url=window.location.href
+        var id=url.split('?')[1].split('=')[1];
+        $.ajax({
+            url:'http://localhost:3000/item/detail',
+            type:'POST',
+            data:{abc:id},
+            success:function (e) {
+                console.log(e)
+
+//                    $('#list ul').append('<li>'+e[i].xiang+'</li>');
+                if(id=='zx'){
+                    for(var i in e){
+                        $('body').append('<p><a href="index2.html?id='+e[i].id+'">'+e[i].detail+'</a></p>')
+                    }
+                }else{
+                    $('body').append('<p>'+e[0].xiang+'</p>');
+                }
+
+
+
+            }
+        })
+    })
+</script>
+</html>
